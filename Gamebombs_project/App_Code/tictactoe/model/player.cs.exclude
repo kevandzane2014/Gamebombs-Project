@@ -1,0 +1,49 @@
+namespace Models
+{
+    /*
+        A single player in a game.
+    */
+    public class Player
+    {
+        private int score;
+        private string name;
+
+        /*
+            Create a new player.
+
+            name - The name of this player
+        */
+        public Player(string name)
+        {
+            score = 0;
+            this.name = name;
+        }
+
+        /*
+            Award a point to this player, increasing
+            their score by one.
+        */
+        public void AwardPoint()
+        {
+            score++;
+        }
+
+        /*
+            Retrieve this player's score.
+            Read-only.
+        */
+        public int Score
+        {
+            get { return score; }
+        }
+
+        /*
+            Retrieve the player's name.
+            Read-only.
+        */
+        public string Name
+        {
+            get { return name; }
+        }
+    }
+}

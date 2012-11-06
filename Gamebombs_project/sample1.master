@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="sample1.master.cs" Inherits="sample1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title>Gamebombs</title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color: #FFFFFF">
+    <form id="Form1" runat="server" style="background-color: #FFFFFF">
+    <div class="page" style="background-color: white">
+        <!--Header Div-->
+        <div class="header" style="background-color: #000000">
+            <!--Left Side in Header (slogan, marquee)-->
+            <div class="title">
+                <h1>
+                    GAMEBOMBS: EXCLUSIVE ONLINE GAME PORTAL</h1>
+                <br />
+                <font size="5" face="monotype corsiva" color="White">
+                    <marquee style="height: 20px; width: 602px"> New iPad 5 launched </marquee>
+                </font>
+            </div>
+            <!--Right Side in Header (logo, login control)-->
+            <div class="loginDisplay">
+                <asp:Image ID="Image1" runat="server" Height="50px" ImageUrl="~/images/gamebombs.jpg"
+                    Width="170px" />
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [<a href="~/Account/Login.aspx" id="HeadLoginStatus" runat="server">Log In</a>]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome, <b>
+                            <asp:LoginName ID="HeadLoginName" runat="server" />
+                        </b>!
+                        <br />
+                        [<asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
+                            LogoutPageUrl="~/" />
+                        ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <!--Menu Div in Header (sitemap data source, menu)-->
+            <div class="clear hideSkiplink" style="background-color: #000000">
+                <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                <asp:Menu ID="NavigationMenu" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource1"
+                    BackColor="Black" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="Small"
+                    StaticSubMenuIndent="10px" StaticEnableDefaultPopOutImage="False">
+                    <DynamicHoverStyle BackColor="Maroon" BorderColor="Black" />
+                    <DynamicMenuItemStyle CssClass="StaticMenuItem" HorizontalPadding="5px" VerticalPadding="2px"
+                        BackColor="Red" BorderColor="Black" />
+                    <DynamicMenuStyle BorderColor="Black" BackColor="Red" />
+                    <DynamicSelectedStyle BackColor="Maroon" BorderColor="Black" />
+                    <StaticHoverStyle BackColor="Maroon" ForeColor="White" BorderColor="Black" />
+                    <StaticMenuItemStyle CssClass="StaticMenuItem" HorizontalPadding="5px" VerticalPadding="2px"
+                        BorderColor="Black" BackColor="Red" />
+                    <StaticMenuStyle BorderColor="Black" BackColor="Red" />
+                    <StaticSelectedStyle BackColor="Red" BorderColor="Black" />
+                </asp:Menu>
+                <br />
+                <br />
+            </div>
+        </div>
+        <!--Main Content Div-->
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                <p>
+                    <br />
+                </p>
+            </asp:ContentPlaceHolder>
+        </div>
+        <!--Footer Div-->
+        <div class="footer" style="background-color: #000000; color: #FFFFFF;">
+            <asp:Menu ID="NavigationMenu0" runat="server" EnableViewState="true" IncludeStyleBlock="true"
+                Orientation="Horizontal" Font-Size="Small" ForeColor="White">
+                <DynamicHoverStyle BackColor="Maroon" BorderColor="Black" />
+                <DynamicMenuItemStyle CssClass="StaticMenuItem" BackColor="Red" BorderColor="Black" />
+                <DynamicMenuStyle BackColor="Red" BorderColor="Black" />
+                <DynamicSelectedStyle BackColor="Maroon" BorderColor="Black" />
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/About.aspx" Text="About Us" />
+                    <asp:MenuItem NavigateUrl="~/Contact.aspx" Text="Contact Us" />
+                </Items>
+                <StaticHoverStyle BackColor="Maroon" BorderColor="Black" />
+                <StaticMenuItemStyle CssClass="StaticMenuItem" BackColor="Red" BorderColor="Black" />
+                <StaticMenuStyle BackColor="Red" BorderColor="Black" />
+                <StaticSelectedStyle BackColor="Maroon" BorderColor="Black" />
+            </asp:Menu>
+            <br />
+            Copyright 2012-13: Team Gamebombs -- All Rights Reserved
+        </div>
+    </div>
+    </form>
+</body>
+</html>

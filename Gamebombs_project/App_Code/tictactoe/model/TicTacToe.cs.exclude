@@ -1,0 +1,192 @@
+namespace Models
+{
+    public class TicTacToe
+    {
+        public const int SpaceCount = 9;
+        private PlayerSymbol turn;
+        private PlayerSymbol[] spaces = new PlayerSymbol[SpaceCount];
+
+        public enum PlayerSymbol
+        {
+            NoOne,
+            X,
+            O
+        }
+
+        // Handlers for game events
+        public delegate void WinHandler(PlayerSymbol player);
+        public delegate void TieHandler();
+
+        // Game events
+        public event WinHandler Win;
+        public event TieHandler Tie;
+
+        /*
+            Create a new game.
+        */
+        public TicTacToe()
+        {
+            // Start a new game, with X going first
+            turn = PlayerSymbol.X;
+            Reset();
+        }
+
+        /*
+            Reset the current game, clearing all spaces.
+            The current turn is unaffected.
+        */
+        public void Reset()
+        {
+            // Clear each space
+            for (int spaceNumber = 0; spaceNumber < SpaceCount; spaceNumber++)
+            {
+                spaces[spaceNumber] = PlayerSymbol.NoOne;
+            }
+        }
+
+        /*
+            Mark a space on the board with the current
+            player's symbol.
+
+            spaceNumber - the index of the space to mark (0-8)
+
+            Returns true if the mark was placed, false if the
+            mark could not be placed (game over, or space already
+            occupied).
+        */
+        public bool Mark(int spaceNumber)
+        {
+            // Ensure it's a valid move
+            if (spaceNumber < 0 || spaceNumber >= SpaceCount || spaces[spaceNumber] != PlayerSymbol.NoOne || IsTied() || GetWinner() != PlayerSymbol.NoOne)
+            {
+                return false;
+            }
+
+            // Mark the space
+            spaces[spaceNumber] = turn;
+
+            // See if the game has ended
+            PlayerSymbol winner = GetWinner();
+            if (IsTied() && Tie != null)
+            {
+                Tie();
+            }
+            else if (winner != PlayerSymbol.NoOne && Win != null)
+            {
+                Win(turn);
+            }
+
+            // Switch turns
+            if (turn == PlayerSymbol.X)
+            {
+                turn = PlayerSymbol.O;
+            }
+            else
+            {
+                turn = PlayerSymbol.X;
+            }
+            return true;
+        }
+
+        /*
+            Get the mark in a space.
+
+            spaceNumber - the index of the space to inspect (0-8)
+
+            Returns the mark in the specified space.
+        */
+        public PlayerSymbol GetMark(int spaceNumber)
+        {
+            // Ensure it's a valid space
+            if (spaceNumber < 0 || spaceNumber >= SpaceCount)
+            {
+                throw new System.ArgumentException("Invalid space number!");
+            }
+            return spaces[spaceNumber];
+        }
+
+        /*
+            Get the current turn.
+            Read-only.
+        */
+        public PlayerSymbol CurrentTurn
+        {
+            get { return turn; }
+        }
+
+        /*
+            Get the winner of the game.
+
+            Returns X or O if a player won, or NoOne
+            if there is no winner.
+        */
+        public PlayerSymbol GetWinner()
+        {
+            // Top-left to top-right
+            if (spaces[0] != PlayerSymbol.NoOne && (spaces[0] == spaces[1]) && (spaces[1] == spaces[2]))
+            {
+                return spaces[0];
+            }
+            // Middle-left to middle-right
+            else if (spaces[3] != PlayerSymbol.NoOne && (spaces[3] == spaces[4]) && (spaces[4] == spaces[5]))
+            {
+                return spaces[3];
+            }
+            // Bottom-left to bottom-right
+            else if (spaces[6] != PlayerSymbol.NoOne && (spaces[6] == spaces[7]) && (spaces[7] == spaces[8]))
+            {
+                return spaces[6];
+            }
+            // Top-left to bottom-left
+            else if (spaces[0] != PlayerSymbol.NoOne && (spaces[0] == spaces[3]) && (spaces[3] == spaces[6]))
+            {
+                return spaces[0];
+            }
+            // Top-middle to bottom-middle
+            else if (spaces[1] != PlayerSymbol.NoOne && (spaces[1] == spaces[4]) && (spaces[4] == spaces[7]))
+            {
+                return spaces[1];
+            }
+            // Top-right to bottom-right
+            else if (spaces[2] != PlayerSymbol.NoOne && (spaces[2] == spaces[5]) && (spaces[5] == spaces[8]))
+            {
+                return spaces[2];
+            }
+            // Top-left to bottom-right
+            else if (spaces[0] != PlayerSymbol.NoOne && (spaces[0] == spaces[4]) && (spaces[4] == spaces[8]))
+            {
+                return spaces[0];
+            }
+            // Top-right to bottom-left
+            else if (spaces[2] != PlayerSymbol.NoOne && (spaces[2] == spaces[4]) && (spaces[4] == spaces[6]))
+            {
+                return spaces[2];
+            }
+
+            // No winning comibnation found.
+            return PlayerSymbol.NoOne;
+        }
+
+        /*
+            Determine if the current game is tied.
+
+            Returns true if the game is tied, false otherwise.
+        */
+        public bool IsTied()
+        {
+            // See if there are any spaces left
+            for (int spaceNumber = 0; spaceNumber < SpaceCount; spaceNumber++)
+            {
+                if (spaces[spaceNumber] == PlayerSymbol.NoOne)
+                {
+                    // Found a space, not tied.
+                    return false;
+                }
+            }
+
+            // Checked every space. None are empty.
+            // If neither player has won, then it's a tie.
+            return (GetWinner() == PlayerSymbol.NoOne);
+        }
+    }
+}

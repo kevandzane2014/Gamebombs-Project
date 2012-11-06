@@ -1,0 +1,87 @@
+using System.Web.Mvc;
+namespace TicTacToeMVC.Controllers
+{
+    [HandleError]
+    public class GameController : Controller
+    {
+        private static Models.Player player1 = null;
+        private static Models.Player player2 = null;
+        private static Models.TicTacToe ticTacToe = null;
+
+        public ActionResult Board()
+        {
+            if (ticTacToe == null || player2 == null || player1 == null)
+            {
+                return RedirectToAction("Name");
+            }
+            return View(new ViewModels.BoardModel(player1, player2, ticTacToe));
+        }
+
+        public ActionResult NewGame()
+        {
+            if (ticTacToe != null)
+            {
+                ticTacToe.Reset();
+            }
+            return RedirectToAction("Board");
+        }
+
+        public ActionResult Mark(int id)
+        {
+            if (ticTacToe.IsTied() || ticTacToe.GetWinner() != Models.TicTacToe.PlayerSymbol.NoOne)
+            {
+                return RedirectToAction("Board");
+            }
+
+            ticTacToe.Mark(id);
+            Models.TicTacToe.PlayerSymbol winner = ticTacToe.GetWinner();
+            if (winner == Models.TicTacToe.PlayerSymbol.X)
+            {
+                player1.AwardPoint();
+            }
+            else if (winner == Models.TicTacToe.PlayerSymbol.O)
+            {
+                player2.AwardPoint();
+            }
+            return RedirectToAction("Board");
+        }
+
+        public ActionResult Name()
+        {
+            if (player1 != null && player2 != null && ticTacToe != null)
+            {
+                return View("Board");
+            }
+            ViewData["PlayerNumber"] = 1;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Name(string name)
+        {
+            if (player1 != null && player2 != null && ticTacToe != null)
+            {
+                return View("Board");
+            }
+
+            if (player1 == null)
+            {
+                player1 = new Models.Player(name);
+                ViewData["PlayerNumber"] = 2;
+                return View();
+            }
+
+            player2 = new Models.Player(name);
+            ticTacToe = new Models.TicTacToe();
+            return RedirectToAction("Board");
+        }
+
+        public ActionResult Reset()
+        {
+            player1 = null;
+            player2 = null;
+            ticTacToe = null;
+            return RedirectToAction("Name");
+        }
+    }
+}

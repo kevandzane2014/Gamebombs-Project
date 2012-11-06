@@ -1,0 +1,212 @@
+﻿
+using System;
+using System.Data;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Text;
+using System.IO;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Web.Script.Services;
+
+
+
+/// <summary>
+/// Summary description for form1
+/// </summary>
+public class form1
+{
+
+    public form1()
+    { }
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && (components != null))
+        {
+            components.Dispose();
+        }
+        base.Dispose(disposing);
+    }
+
+    #region Windows Form Designer generated code
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+        this.ImageButton1 = new System.Windows.Forms.PictureBox();
+        this.ImageButton2 = new System.Windows.Forms.PictureBox();
+        this.ImageButton3 = new System.Windows.Forms.PictureBox();
+        this.ImageButton4 = new System.Windows.Forms.PictureBox();
+        this.ImageButton5 = new System.Windows.Forms.PictureBox();
+        this.ImageButton6 = new System.Windows.Forms.PictureBox();
+        this.ImageButton7 = new System.Windows.Forms.PictureBox();
+        this.ImageButton8 = new System.Windows.Forms.PictureBox();
+        this.ImageButton9 = new System.Windows.Forms.PictureBox();
+        this.buttonstart = new System.Windows.Forms.Button();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton1)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton2)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton3)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton4)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton5)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton6)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton7)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton8)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton9)).BeginInit();
+        this.SuspendLayout();
+        // 
+        // ImageButton1
+        // 
+        this.ImageButton1.Location = new System.Drawing.Point(13, 13);
+        this.ImageButton1.Name = "pictureBox1";
+        this.ImageButton1.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton1.TabIndex = 0;
+        this.ImageButton1.TabStop = false;
+        this.ImageButton1.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton2
+        // 
+        this.ImageButton2.Location = new System.Drawing.Point(131, 13);
+        this.ImageButton2.Name = "pictureBox2";
+        this.ImageButton2.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton2.TabIndex = 1;
+        this.ImageButton2.TabStop = false;
+        this.ImageButton2.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton3
+        // 
+        this.ImageButton3.Location = new System.Drawing.Point(250, 13);
+        this.ImageButton3.Name = "pictureBox3";
+        this.ImageButton3.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton3.TabIndex = 2;
+        this.ImageButton3.TabStop = false;
+        this.ImageButton3.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton4
+        // 
+        this.ImageButton4.Location = new System.Drawing.Point(12, 134);
+        this.ImageButton4.Name = "pictureBox4";
+        this.ImageButton4.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton4.TabIndex = 3;
+        this.ImageButton4.TabStop = false;
+        this.ImageButton4.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton5
+        // 
+        this.ImageButton5.Location = new System.Drawing.Point(131, 134);
+        this.ImageButton5.Name = "pictureBox5";
+        this.ImageButton5.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton5.TabIndex = 4;
+        this.ImageButton5.TabStop = false;
+        this.ImageButton5.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton6
+        // 
+        this.ImageButton6.Location = new System.Drawing.Point(250, 134);
+        this.ImageButton6.Name = "pictureBox6";
+        this.ImageButton6.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton6.TabIndex = 5;
+        this.ImageButton6.TabStop = false;
+        this.ImageButton6.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton7
+        // 
+        this.ImageButton7.Location = new System.Drawing.Point(13, 251);
+        this.ImageButton7.Name = "pictureBox7";
+        this.ImageButton7.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton7.TabIndex = 6;
+        this.ImageButton7.TabStop = false;
+        this.ImageButton7.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton8
+        // 
+        this.ImageButton8.Location = new System.Drawing.Point(131, 251);
+        this.ImageButton8.Name = "pictureBox8";
+        this.ImageButton8.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton8.TabIndex = 7;
+        this.ImageButton8.TabStop = false;
+        this.ImageButton8.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // ImageButton9
+        // 
+        this.ImageButton9.Location = new System.Drawing.Point(250, 251);
+        this.ImageButton9.Name = "pictureBox9";
+        this.ImageButton9.Size = new System.Drawing.Size(100, 100);
+        this.ImageButton9.TabIndex = 8;
+        this.ImageButton9.TabStop = false;
+        this.ImageButton9.Click += new System.EventHandler(this.tile_Click);
+        // 
+        // buttonstart
+        // 
+        this.buttonstart.Location = new System.Drawing.Point(142, 364);
+        this.buttonstart.Name = "buttonstart";
+        this.buttonstart.Size = new System.Drawing.Size(75, 23);
+        this.buttonstart.TabIndex = 10;
+        this.buttonstart.Text = "Start";
+        this.buttonstart.UseVisualStyleBackColor = true;
+        this.buttonstart.Click += new System.EventHandler(this.buttonstart_Click);
+        // 
+        // Form1
+        // 
+        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        this.ClientSize = new System.Drawing.Size(368, 399);
+        this.Controls.Add(this.buttonstart);
+        this.Controls.Add(this.pictureBox9);
+        this.Controls.Add(this.pictureBox8);
+        this.Controls.Add(this.pictureBox7);
+        this.Controls.Add(this.pictureBox6);
+        this.Controls.Add(this.pictureBox5);
+        this.Controls.Add(this.pictureBox4);
+        this.Controls.Add(this.pictureBox3);
+        this.Controls.Add(this.pictureBox2);
+        this.Controls.Add(this.pictureBox1);
+        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+        this.Name = "Form1";
+        this.Text = "Tic Tac Toe";
+        this.Load += new System.EventHandler(this.Form1_Load);
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton1)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton2)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton3)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton4)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton5)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton6)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton7)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton8)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ImageButton9)).EndInit();
+        this.ResumeLayout(false);
+
+    }
+
+    #endregion
+
+    private System.Windows.Forms.ImageButton ImageButton1;
+    private System.Windows.Forms.ImageButton ImageButton2;
+    private System.Windows.Forms.ImageButton ImageButton3;
+    private System.Windows.Forms.ImageButton ImageButton4;
+    private System.Windows.Forms.ImageButton ImageButton5;
+    private System.Windows.Forms.ImageButton ImageButton6;
+    private System.Windows.Forms.ImageButton ImageButton7;
+    private System.Windows.Forms.ImageButton ImageButton8;
+    private System.Windows.Forms.ImageButton ImageButton9;
+    private System.Windows.Forms.Button buttonstart;
+}
+

@@ -1,0 +1,59 @@
+<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+Game Board
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <% ViewModels.BoardModel model = Model as ViewModels.BoardModel; %>
+    <p>
+        <b><%: model.Player1Name %></b> <%: model.Player1Score %> | <b><%: model.Player2Name %></b> <%: model.Player2Score %>
+    </p>
+    <h2>
+    <%
+        if (model.IsGameOver)
+        {
+            if (model.IsTied)
+            {
+                %>Tied!<%
+            }
+            else
+            {
+                %><%: model.Winner %> Won! <%
+            }
+        }
+        else
+        {
+            %><%: model.CurrentPlayerName %>'s turn.<%
+        }
+    %>
+    </h2>
+
+    <h3>
+        <table>
+        <%
+            for (int row = 0; row < 3; row++)
+            {
+                %><tr><%
+                for (int column = 0; column < 3; column++)
+                {
+                    int spaceNumber = column * 3 + row;
+                    %><td><%
+                    if (model.IsSpaceTaken(spaceNumber))
+                    {
+                        %><%: model.GetSpaceString(spaceNumber) %><%
+                    }
+                    else
+                    {
+                        %><%: Html.ActionLink("?", "Mark", new { id = spaceNumber }) %><%
+                    }
+                    %></td><%
+                }
+                %></tr><%
+            }
+        %>
+        </table>
+    </h3>
+
+    <p><%: Html.ActionLink("New Game", "NewGame") %></p>
+</asp:Content>

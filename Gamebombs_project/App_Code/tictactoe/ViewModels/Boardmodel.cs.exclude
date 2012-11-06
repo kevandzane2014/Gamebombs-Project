@@ -1,0 +1,63 @@
+using Models;
+
+namespace ViewModels
+{
+    public class BoardModel
+    {
+        Player player1;
+        Player player2;
+        TicTacToe ticTacToe;
+
+        public BoardModel(Player player1, Player player2, TicTacToe ticTacToe)
+        {
+            this.player1 = player1;
+            this.player2 = player2;
+            this.ticTacToe = ticTacToe;
+        }
+
+        public bool IsSpaceTaken(int spaceNumber)
+        {
+            return ticTacToe.GetMark(spaceNumber) != TicTacToe.PlayerSymbol.NoOne;
+        }
+
+        public string GetSpaceString(int spaceNumber)
+        {
+            return GetSymbolString(ticTacToe.GetMark(spaceNumber));
+        }
+
+        public bool IsGameOver { get { return ticTacToe.IsTied() || ticTacToe.GetWinner() != TicTacToe.PlayerSymbol.NoOne; } }
+        public string Winner { get { return GetSymbolPlayer(ticTacToe.GetWinner()); } }
+        public bool IsTied { get { return ticTacToe.IsTied(); } }
+        public string Player1Name { get { return player1.Name; } }
+        public string Player2Name { get { return player2.Name; } }
+        public int Player1Score { get { return player1.Score; } }
+        public int Player2Score { get { return player2.Score; } }
+        public string CurrentPlayerName { get { return GetSymbolPlayer(ticTacToe.CurrentTurn); } }
+
+        private string GetSymbolPlayer(TicTacToe.PlayerSymbol symbol)
+        {
+            switch (symbol)
+            {
+                case TicTacToe.PlayerSymbol.X:
+                    return player1.Name;
+                case TicTacToe.PlayerSymbol.O:
+                    return player2.Name;
+                default:
+                    return "";
+            }
+        }
+
+        private string GetSymbolString(TicTacToe.PlayerSymbol symbol)
+        {
+            switch (symbol)
+            {
+                case TicTacToe.PlayerSymbol.X:
+                    return "X";
+                case TicTacToe.PlayerSymbol.O:
+                    return "O";
+                default:
+                    return " ";
+            }
+        }
+    }
+}
